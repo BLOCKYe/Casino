@@ -15,7 +15,10 @@ export class Roulette extends Component {
       parseInt(localStorage.getItem("balance")) > 100
         ? parseInt(localStorage.getItem("balance"))
         : 100,
-    history: [],
+    history:
+      JSON.parse(localStorage.getItem("history")) === null
+        ? []
+        : JSON.parse(localStorage.getItem("history")),
     selected: [],
     ambers: [],
     purples: [],
@@ -24,6 +27,7 @@ export class Roulette extends Component {
     randomCards: [],
     rollStatus: true,
     timer: 15,
+    startStatus: false,
   };
 
   // roulette engine
@@ -33,7 +37,8 @@ export class Roulette extends Component {
         this.countDown();
       }, 15000 * i);
     }
-
+    
+    this.setState({ startStatus: true });
     this.generateCards();
   }
 
@@ -41,6 +46,9 @@ export class Roulette extends Component {
   componentDidUpdate() {
     if (this.state.balance !== localStorage.getItem("balance")) {
       localStorage.setItem("balance", this.state.balance);
+    }
+    if (this.state.history !== JSON.parse(localStorage.getItem("history"))) {
+      localStorage.setItem("history", JSON.stringify(this.state.history));
     }
   }
 
@@ -189,7 +197,10 @@ export class Roulette extends Component {
           status={this.state.rollStatus}
           first={this.state.history}
         />
-        <HistoryRender element={this.state.history} />
+        <HistoryRender
+          start={this.state.startStatus}
+          element={this.state.history}
+        />
         <PlaceBet
           getBet={this.getBet.bind(this)}
           element={this.state.balance}

@@ -10,7 +10,7 @@ function History(props) {
         type: "spring",
         stiffness: 260,
         damping: 20,
-        delay: 3,
+        delay: (props.start ? 3 : 0),
       }}
       className={`tab ${props.element}`}
     ></motion.div>

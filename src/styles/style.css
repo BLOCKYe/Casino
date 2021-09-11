@@ -86,7 +86,7 @@ html::-webkit-scrollbar {
   display: none;
 }
 
-.modal::-webkit-scrollbar {
+.currency-container::-webkit-scrollbar {
   display: none;
 }
 
@@ -664,46 +664,53 @@ a {
 
 .modal {
   width: 100%;
-  height: 50vh;
+  height: 100vh;
   position: fixed;
-  top: 50%;
+  top: 0;
   left: 0;
-  background-color: #101011;
-  border-radius: 30px 30px 0px 0px;
+}
+
+.modal .align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal .align .currency-container {
+  height: 40%;
+  width: 100%;
+  background-color: #2a2c30;
   overflow: auto;
+  border-radius: 30px 30px 0px 0px;
 }
 
-.modal .close {
-  padding: 10px;
-  position: fixed;
-  top: 52%;
-  right: 30px;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-.modal .currency {
+.modal .align .currency-container .currency {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 30px;
-  border-bottom: 1px solid #2a2c30;
+  padding: 0px 30px;
+  border-bottom: 1px solid black;
   cursor: pointer;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
 
-.modal .currency .name {
+.modal .align .currency-container .currency .name {
   margin-left: 10px;
   opacity: 0.3;
   font-weight: 400;
 }
 
-.modal .currency:hover {
-  background-color: #2a2c30;
+.modal .align .currency-container .currency:hover {
+  background-color: #111316;
 }
 
 @media (min-width: 1100px) {
@@ -711,10 +718,18 @@ a {
     display: none;
   }
   .modal {
-    font-size: 0.8rem;
-    right: 0;
-    max-width: 300px;
-    left: unset;
+    position: absolute;
+    font-size: 0.7rem;
+    top: 5%;
+  }
+  .modal .align .currency-container {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    border-radius: 15px;
+  }
+  .modal .align .currency-container .currency {
+    padding: 0px 30px;
   }
   .menu {
     background-color: unset;

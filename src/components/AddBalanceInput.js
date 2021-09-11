@@ -13,7 +13,13 @@ function AddBalanceInput(props) {
     fetch(`https://api.nbp.pl/api/exchangerates/tables/a/?format=json`)
       .then((response) => response.json())
       .then((response) => {
-        setcurrency(response[0].rates);
+        const pln = {
+          currency: "polski złoty",
+          code: "PLN",
+          mid: 1,
+        };
+        let rates = [pln, ...response[0].rates];
+        setcurrency(rates);
       });
   }, []);
 

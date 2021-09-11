@@ -4,7 +4,7 @@ import History from "./History";
 function HistoryRender(props) {
   // render history array
   const history = props.element.map((e) => {
-    return <History element={e.color} key={e.id} />;
+    return <History start={props.start} element={e.color} key={e.id} />;
   });
 
   return (
